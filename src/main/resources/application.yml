@@ -1,0 +1,72 @@
+server:
+  context-path: /demo/
+  port: 9099
+
+management:
+  port: 9098
+  address: 127.0.0.1
+
+spring:
+    redis:
+      database: 0
+      host: 192.168.0.105
+      port: 6379
+      password: foobared
+      lettuce:
+        pool:
+          max-active: 8
+          max-wait: -1
+          max-idle: 8
+          min-idle: 0
+      timeout: 100s
+    maxplus1:
+      druid: # 公共属性
+        driver-class-name: com.mysql.jdbc.Driver
+        data-sources: # 数据源个性化配置
+          master: # 注册的DataSource名字为：masterDataSource
+            username: masterName
+            password: masterPass
+            url: jdbc:mysql://192.168.0.104:3306/maxplus?useUnicode=true&characterEncoding=UTF-8
+      mybatis: # 公共属性
+          type-aliases-package: com.maxplus1.demo.data.entity
+          configuration:
+              map-underscore-to-camel-case: true
+              default-fetch-size: 100
+              default-statement-timeout: 30
+          data-sources:
+            master: # 数据源+MyBatis个性化配置。默认第一个是主数据源，即@Primary
+              mapper-locations: classpath:mapper/master/*.xml # 可以输入数组
+              base-package: com.maxplus1.demo.data.dao.master
+      pagehelper: # 分页参数，公共属性
+        pageSizeZero: true
+        rowBoundsWithCount: true
+        offsetAsPageNum: true
+        supportMethodsArguments: true
+        data-sources:
+          master:
+            helperDialect: mysql
+      shiro:
+        tokenKey: uuusid
+        loginUrl: /api/sys/login
+        filterChain: | # 注意所有perms的权限都需要通过@RequirePermissions来实现，建议不要配置perms（动态URL问题）。PS:yaml配置map的key含有/时，无法识别/。
+            /static/**=anon
+            /api/sys/ssoLogin=anon
+            /api/sys/login=anon
+            /api/sys/testRedis=anon
+            /api/**=authc
+            /**=authc
+            /api/sys/logout=logout
+        globalSessionTimeout: 180000000 # 3,600,000 milliseconds = 1 hour
+        sessionValidationInterval: 360000 # 会话有效校验扫描间隔
+        redisCacheEnabled: false # 开启分布式session 需要引入Redis的相关配置，spring-data-redis
+        testMode: false # 开启测试模式，测试模式下所有url的访问权限都是anon
+        mockUser: # 测试模式模拟的用户
+            userId: 'MOCK_USER0'
+            userName: 'mock_yonghu0'
+            deptId: 'MOCK_DEPT0'
+            deptName: '模拟部门0'
+            realName: '模拟用户0'
+            status: '正常'
+            password: 'MOCK_PASS0'
+
+
