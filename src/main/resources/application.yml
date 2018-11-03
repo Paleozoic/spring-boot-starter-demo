@@ -21,6 +21,15 @@ spring:
       timeout: 100s
     maxplus1:
       druid: # 公共属性
+        minIdle: 5
+        maxActive: 20
+        initialSize: 5
+        timeBetweenEvictionRunsMillis: 3000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: SELECT 1 FROM DUAL
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
         data-sources: # 数据源个性化配置
           master: # 注册的DataSource名字为：masterDataSource
             username: paleo
