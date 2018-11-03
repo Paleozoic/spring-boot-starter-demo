@@ -21,12 +21,17 @@ spring:
       timeout: 100s
     maxplus1:
       druid: # 公共属性
-        driver-class-name: com.mysql.jdbc.Driver
         data-sources: # 数据源个性化配置
           master: # 注册的DataSource名字为：masterDataSource
-            username: masterName
-            password: masterPass
-            url: jdbc:mysql://192.168.0.104:3306/maxplus?useUnicode=true&characterEncoding=UTF-8
+            username: paleo
+            password: paleo
+            url: jdbc:oracle:thin:@192.168.186.129:1521:maxplus
+            driver-class-name: oracle.jdbc.OracleDriver
+          slave:
+            username: maxplus
+            password: maxplus
+            url: jdbc:mysql://192.168.186.128:3306/maxplus?useUnicode=true&characterEncoding=UTF-8
+            driver-class-name: com.mysql.jdbc.Driver
       mybatis: # 公共属性
           type-aliases-package: com.maxplus1.demo.data.entity
           configuration:
@@ -44,6 +49,8 @@ spring:
         supportMethodsArguments: true
         data-sources:
           master:
+            helperDialect: oracle
+          slave:
             helperDialect: mysql
       shiro:
         tokenKey: uuusid
@@ -70,3 +77,7 @@ spring:
             password: 'MOCK_PASS0'
 
 
+db:
+  migration:
+    master: db/migration/master
+    slave:  db/migration/slave
