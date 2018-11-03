@@ -1,4 +1,4 @@
-package com.maxplus1.demo.dao.test1db;
+package com.maxplus1.demo.data.dao.test1db;
 
 import com.maxplus1.demo.data.entity.Test1Pojo;
 import org.apache.ibatis.annotations.Mapper;

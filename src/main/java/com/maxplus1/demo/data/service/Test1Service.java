@@ -1,6 +1,6 @@
 package com.maxplus1.demo.data.service;
 
-import com.maxplus1.demo.dao.test1db.Test1Dao;
+import com.maxplus1.demo.data.dao.test1db.Test1Dao;
 import com.maxplus1.demo.data.entity.Test1Pojo;
 import com.maxplus1.demo.data.remote.ITest1Service;
 import org.springframework.stereotype.Service;
