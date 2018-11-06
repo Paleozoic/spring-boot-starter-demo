@@ -8,8 +8,9 @@ management:
 
 spring:
     autoconfigure:
-      exclude:
+      exclude: # 以下2个AutoConfiguration会自动读取Spring默认数据源，导致报错
         - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+        - org.springframework.boot.autoconfigure.flyway.FlywayAutoConfiguration
     redis:
       database: 0
       host: 192.168.0.105
@@ -23,7 +24,9 @@ spring:
           min-idle: 0
       timeout: 100s
     maxplus1:
-      druid: # 公共属性，以下注释的公共属性，到导致Druid的初始化，所以无法继承，详情可参考Druid，里面也提到spring boot 2.0不支持继承属性了
+      druid: # 公共属性，以下注释的公共属性，到导致Druid的初始化，所以无法继承，详情可参考Druid，
+            # 里面也提到spring boot 2.0不支持继承属性了。继承属性依赖于BeanPostProcessor，BeanPostProcessor加载顺序靠后。
+            # BeanPostProcessor的启动顺序介绍：https://blog.csdn.net/m0_37962779/article/details/78605478
 #        minIdle: 5
 #        maxActive: 20
 #        initialSize: 5
