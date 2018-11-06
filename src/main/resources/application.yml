@@ -25,7 +25,7 @@ spring:
       timeout: 100s
     maxplus1:
       druid: # 公共属性，以下注释的公共属性，到导致Druid的初始化，所以无法继承，详情可参考Druid，
-            # 里面也提到spring boot 2.0不支持继承属性了。继承属性依赖于BeanPostProcessor，BeanPostProcessor加载顺序靠后。
+            # 里面也提到spring boot 2.0不支持继承属性了。(PS:经过一系列分析和debug发现也不是这个原因，也可能是，不确定= =|| 所以说，这个继承可能还是有用的，可以试试做个断点来看看。我暂且保留  继承属性依赖于BeanPostProcessor，BeanPostProcessor加载顺序靠后。)
             # BeanPostProcessor的启动顺序介绍：https://blog.csdn.net/m0_37962779/article/details/78605478
 #        minIdle: 5
 #        maxActive: 20
