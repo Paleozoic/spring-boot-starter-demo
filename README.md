@@ -24,3 +24,13 @@
 
 # Spring的监听器
 https://www.cnblogs.com/senlinyang/p/8496099.html
+
+
+# flyway
+数据库迁移工具：flyway支持。flyway企业版才支持Oracle 11。
+可以尝试回退到4.2.0版本。flayway的思路是最新版本免费支持最新的Oracle~
+在使用oracle的时候，如果报莫名错误，尝试如下sql：
+```sql
+truncate table "schema_version";
+commit;
+```
