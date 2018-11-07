@@ -34,3 +34,40 @@ https://www.cnblogs.com/senlinyang/p/8496099.html
 truncate table "schema_version";
 commit;
 ```
+
+# 整合问题
+我调试的过程和此文类似，就是为了搞清楚`BeanPostProcessor`的调用顺序。
+[详情点击](https://blog.csdn.net/m0_37962779/article/details/78605478)
+于是我在内部类`DruidDataSourceConfiguration.DruidDataSourceBeanPostProcessor`中，让DruidDataSourceBeanPostProcessor实现了`PriorityOrdered`接口，
+让数据源可以优先处理。
+否则，在整合我的2个自定义starter，Shiro和MyBatis造成冲突。（复杂的依赖关系）
+```xml
+<dependency>
+    <groupId>com.maxplus1</groupId>
+    <artifactId>shiro-spring-boot-starter</artifactId>
+    <version>1.0.0</version>
+</dependency>
+<dependency>
+    <groupId>com.maxplus1</groupId>
+    <artifactId>mybatis-spring-boot-starter</artifactId>
+    <version>1.0.0</version>
+</dependency>
+```
+报错如下：
+```log
+2018-11-07 16:38:50,128:INFO main (DefaultLazyPropertyFilter.java:31) - Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
+2018-11-07 16:38:53,291:INFO main (PostProcessorRegistrationDelegate.java:328) - Bean 'org.springframework.boot.context.properties.ConversionServiceDeducer$Factory' of type [org.springframework.boot.context.properties.ConversionServiceDeducer$Factory] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-11-07 16:38:54,310:INFO main (DefaultLazyPropertyResolver.java:31) - Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+2018-11-07 16:38:54,400:INFO main (DefaultLazyPropertyDetector.java:30) - Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+2018-11-07 16:38:55,551:INFO main (PostProcessorRegistrationDelegate.java:328) - Bean 'spring.maxplus1.shiro-com.maxplus1.access.starter.config.shiro.ShiroProperties' of type [com.maxplus1.access.starter.config.shiro.ShiroProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-11-07 16:38:55,662:INFO main (PostProcessorRegistrationDelegate.java:328) - Bean 'com.maxplus1.access.starter.config.shiro.ShiroAutoConfiguration' of type [com.maxplus1.access.starter.config.shiro.ShiroAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-11-07 16:39:41,540:ERROR main (DruidDataSource.java:910) - {dataSource-1} init error
+java.lang.NullPointerException: null
+	at oracle.jdbc.driver.OracleDriver.connect(OracleDriver.java:420) ~[ojdbc6-11.2.0.4.jar:11.2.0.4.0]
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1558) ~[druid-1.1.10.jar:1.1.10]
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1623) ~[druid-1.1.10.jar:1.1.10]
+	at com.alibaba.druid.pool.DruidDataSource.init(DruidDataSource.java:861) ~[druid-1.1.10.jar:1.1.10]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_131]
+```
+调试也可以发现，没有进入DruidDataSourceBeanPostProcessor，Spring的自动装配顺序有点让人意外。
+其中到底是Shiro的哪个依赖影响了DruidDataSourceBeanPostProcessor，我已无法理清……（头晕眼花的debug= =||，偷个懒，不调试了……）
