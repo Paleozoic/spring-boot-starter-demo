@@ -50,7 +50,7 @@ commit;
 <dependency>
     <groupId>com.maxplus1</groupId>
     <artifactId>mybatis-spring-boot-starter</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 报错如下：
@@ -70,4 +70,4 @@ java.lang.NullPointerException: null
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_131]
 ```
 调试也可以发现，没有进入DruidDataSourceBeanPostProcessor，Spring的自动装配顺序有点让人意外。
-其中到底是Shiro的哪个依赖影响了DruidDataSourceBeanPostProcessor，我已无法理清……（头晕眼花的debug= =||，偷个懒，不调试了……）
+其中到底是Shiro Starter的哪个依赖影响了DruidDataSourceBeanPostProcessor，我已无法理清……（头晕眼花的debug= =||，偷个懒，不调试了……）
