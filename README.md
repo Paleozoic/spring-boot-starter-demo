@@ -1,6 +1,6 @@
 # 写在前面
 We can just import two spring boot starters to easily build a project with shiro RBAC configuration and multi-datasources(also multi-dialects) configuration.
-What we should do is to implemente the interface `com.maxplus1.access.starter.config.shiro.rbac.service` and to edit the file `application.yml`.
+What we should do is to implemente the interface `com.maxplus1.access.starter.config.shiro.rbac.service.IShiroService` and to edit the file `application.yml`.
 The starters depend on `Druid`,`Shiro` and `MyBatis`.
 - [spring-boot-starter-demo](https://github.com/Paleozoic/spring-boot-starter-demo)
 - [mybatis-spring-boot-starter](https://github.com/Paleozoic/mybatis-spring-boot-starter)
@@ -32,7 +32,7 @@ The starters depend on `Druid`,`Shiro` and `MyBatis`.
 - BeanPostProcessor包含了InitializingBean的前后拦截器
 
 # Spring的监听器
-https://www.cnblogs.com/senlinyang/p/8496099.html
+[了解一下Spring Boot监听器的生命周期](https://www.cnblogs.com/senlinyang/p/8496099.html)，更具体的可以去看官方文档。
 
 
 # flyway
@@ -79,4 +79,5 @@ java.lang.NullPointerException: null
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_131]
 ```
 调试也可以发现，没有进入DruidDataSourceBeanPostProcessor，Spring的自动装配顺序有点让人意外。
-其中到底是Shiro Starter的哪个依赖影响了DruidDataSourceBeanPostProcessor，我已无法理清……（头晕眼花的debug= =||，偷个懒，不调试了……）
+其中到底是Shiro Starter的哪个依赖提前加载了DataSource，影响了DruidDataSourceBeanPostProcessor，我已无法理清……
+（头晕眼花的debug= =||，偷个懒，不调试了……）
