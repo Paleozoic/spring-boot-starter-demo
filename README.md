@@ -45,12 +45,12 @@ commit;
 <dependency>
     <groupId>com.maxplus1</groupId>
     <artifactId>shiro-spring-boot-starter</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.3</version>
 </dependency>
 <dependency>
     <groupId>com.maxplus1</groupId>
     <artifactId>mybatis-spring-boot-starter</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.3</version>
 </dependency>
 ```
 报错如下：
