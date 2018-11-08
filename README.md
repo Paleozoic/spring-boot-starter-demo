@@ -1,3 +1,12 @@
+# 写在前面
+We can just use two spring boot starters to build easily a project with shiro RBAC configuration and multi-datasources(event multi-dialects) configuration.
+What we should do is to implemente the interface `com.maxplus1.access.starter.config.shiro.rbac.service` and to edit the file `application.yml`.
+But the starters is limited,they depend on `Druid`,`Shiro` and `MyBatis`.
+[spring-boot-starter-demo](https://github.com/Paleozoic/spring-boot-starter-demo)
+[mybatis-spring-boot-starter](https://github.com/Paleozoic/mybatis-spring-boot-starter)
+[shiro-spring-boot-starter](https://github.com/Paleozoic/shiro-spring-boot-starter)
+
+
 # Spring Bean装载过程
 ## Spring装配Bean的过程
 1. 实例化;
@@ -45,7 +54,7 @@ commit;
 <dependency>
     <groupId>com.maxplus1</groupId>
     <artifactId>shiro-spring-boot-starter</artifactId>
-    <version>1.0.3</version>
+    <version>1.0.4</version>
 </dependency>
 <dependency>
     <groupId>com.maxplus1</groupId>
