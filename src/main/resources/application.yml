@@ -25,7 +25,7 @@ spring:
           min-idle: 0
       timeout: 100s
     maxplus1:
-      druid: # 公共属性，以下注释的公共属性，到导致Druid的初始化，所以无法继承，详情可参考Druid，
+      druid: # 公共属性
         minIdle: 5
         maxActive: 20
         initialSize: 5
