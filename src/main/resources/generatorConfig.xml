@@ -39,10 +39,13 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-        <table tableName="da_interface_param_info" domainObjectName="InterfaceDefinitionInfo" schema="runcrm"
-               enableInsert="true"
-               enableUpdateByPrimaryKey="true" enableDeleteByPrimaryKey="true"
-               enableSelectByExample="true" selectByExampleQueryId="true" enableSelectByPrimaryKey="true">
+        <table tableName="test" domainObjectName="Test" schema="test"
+               enableInsert="true" enableSelectByPrimaryKey="true"  enableDeleteByPrimaryKey="false"
+               enableSelectByExample="false"
+               enableUpdateByPrimaryKey="false" enableDeleteByExample="false"
+               enableCountByExample="false" enableUpdateByExample="false"
+               selectByPrimaryKeyQueryId="false" selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="true"/>
         </table>
     </context>
 </generatorConfiguration>
