@@ -45,7 +45,7 @@
                enableUpdateByPrimaryKey="false" enableDeleteByExample="false"
                enableCountByExample="false" enableUpdateByExample="false"
                selectByPrimaryKeyQueryId="false" selectByExampleQueryId="false">
-            <property name="useActualColumnNames" value="true"/>
+            <property name="useActualColumnNames" value="false"/>
         </table>
     </context>
 </generatorConfiguration>
