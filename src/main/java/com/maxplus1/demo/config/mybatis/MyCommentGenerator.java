@@ -1,4 +1,4 @@
-package com.maxplus1;
+package com.maxplus1.demo.config.mybatis;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

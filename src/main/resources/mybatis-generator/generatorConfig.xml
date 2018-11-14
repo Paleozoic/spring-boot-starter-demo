@@ -10,7 +10,7 @@
         <property name="beginningDelimiter" value="`"/>
         <property name="endingDelimiter" value="`"/>
         <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"/>
-        <commentGenerator type="com.maxplus1.MyCommentGenerator">
+        <commentGenerator type="com.maxplus1.demo.config.mybatis.MyCommentGenerator">
         </commentGenerator>
         <!--<commentGenerator >-->
         <!--<property name="suppressAllComments" value="true"/>-->

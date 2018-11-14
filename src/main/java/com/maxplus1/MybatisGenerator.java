@@ -23,15 +23,15 @@ import java.util.Properties;
  * @创建时间：2016年11月22日
  * @修改记录：
  */
-public class MDB {
+public class MybatisGenerator {
     public static void main(String[] args) throws URISyntaxException {
         try {
             List<String> warnings = new ArrayList<String>();
             boolean overwrite = true;
             ClassLoader classloader = Thread.currentThread().getContextClassLoader();
-            InputStream is = classloader.getResourceAsStream("generatorConfig.xml");
+            InputStream is = classloader.getResourceAsStream("mybatis-generator/generatorConfig.xml");
             Properties properties = new Properties();
-            InputStream propIs = classloader.getResourceAsStream("mdb.properties");
+            InputStream propIs = classloader.getResourceAsStream("mybatis-generator/mdb.properties");
             properties.load(propIs);
             ConfigurationParser cp = new ConfigurationParser(properties,warnings);
             Configuration config = cp.parseConfiguration(is);
