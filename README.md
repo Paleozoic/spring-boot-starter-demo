@@ -40,6 +40,7 @@ The starters depend on `Druid`,`Shiro` and `MyBatis`.
 可以尝试回退到4.2.0版本。flayway的思路是最新版本免费支持最新的Oracle~
 在使用oracle的时候，如果报莫名错误，尝试如下sql：
 ```sql
+# 注意 该sql会清除所有执行记录，导致sql脚本被重新执行，慎重。
 truncate table "schema_version";
 commit;
 ```
