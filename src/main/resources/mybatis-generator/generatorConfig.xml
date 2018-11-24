@@ -42,8 +42,8 @@
         <table tableName="test" domainObjectName="Test" schema="test"
                enableInsert="true" enableSelectByPrimaryKey="true"  enableDeleteByPrimaryKey="false"
                enableSelectByExample="false"
-               enableUpdateByPrimaryKey="false" enableDeleteByExample="false"
-               enableCountByExample="false" enableUpdateByExample="false"
+               enableUpdateByPrimaryKey="true" enableDeleteByExample="false"
+               enableCountByExample="false" enableUpdateByExample="true"
                selectByPrimaryKeyQueryId="false" selectByExampleQueryId="false">
             <property name="useActualColumnNames" value="false"/>
         </table>
