@@ -16,7 +16,7 @@ public class Const {
     public enum ACT_TYPE{
         TYPE_ONE("1");
         @Getter
-        private String val;
+        private final String val;
     }
 
 
