@@ -43,6 +43,9 @@ The starters depend on `Druid`,`Shiro` and `MyBatis`.
 # 注意 该sql会清除所有执行记录，导致sql脚本被重新执行，慎重。
 truncate table "schema_version";
 commit;
+
+# 如果有执行失败的SQL，手动回滚并在schema_version删除对应版本的记录
+
 ```
 
 # 整合问题
