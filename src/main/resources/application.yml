@@ -52,6 +52,7 @@ spring:
               map-underscore-to-camel-case: true
               default-fetch-size: 100
               default-statement-timeout: 30
+              jdbc-type-for-null: 20
           data-sources:
             master: # 数据源+MyBatis个性化配置。默认第一个是主数据源，即@Primary
               mapper-locations: classpath:mapper/master/*.xml # 可以输入数组
